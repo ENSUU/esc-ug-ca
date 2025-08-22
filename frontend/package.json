@@ -1,0 +1,36 @@
+{
+  "name": "esc-ug-ca",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.11",
+    "@tanstack/react-query": "^5.85.0",
+    "@tanstack/react-router": "^1.131.5",
+    "@tanstack/react-router-devtools": "^1.131.5",
+    "extendable-media-recorder": "^9.2.28",
+    "extendable-media-recorder-wav-encoder": "^7.0.130",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "tailwindcss": "^4.1.11"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.32.0",
+    "@tanstack/router-plugin": "^1.131.5",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.32.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "vite": "^7.1.0"
+  }
+}
