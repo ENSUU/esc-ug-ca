@@ -5,7 +5,7 @@
 ## How It's Made:
 ### Tech Stack:
 * (Frontend) React + TailwindCSS + extendable-media-recorder
-* (Backend) Node.js + Express + better-sqlite3 + bcrypt + dotenv + multer + cors
+* (Backend) Node.js + Express + better-sqlite3 + bcrypt + jsonwebtoken + dotenv + multer + cors
 
 ### Client:
 The client was built using React. The main pages the user will interact with are: 
