@@ -10,7 +10,7 @@ import { verifyToken } from "./middleware/authMiddleware.js";
 
 const app = express();
 
-const prodOrigin = "";
+const prodOrigin = "https://esc-ug-ca.onrender.com";
 app.use(
   cors({
     origin:
