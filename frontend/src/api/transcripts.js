@@ -13,7 +13,9 @@ export const fetchGeneratedTranscript = async (audioBlob, userToken) => {
   });
 
   if (!res.ok) {
-    throw new Error("Upload failed.");
+    throw new Error(
+      "Something went wrong trying to generate your transcript. Please try again.",
+    );
   }
 
   return await res.json();

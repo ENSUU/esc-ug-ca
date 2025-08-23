@@ -12,6 +12,7 @@ function HomePage() {
   const [generatedTranscript, setGeneratedTranscript] = useState("");
   const [isRecording, setIsRecording] = useState(false);
   const [audioURL, setAudioURL] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const mediaRecorderRef = useRef(null);
   const chunksRef = useRef([]);
   const { token } = useToken();
@@ -28,6 +29,11 @@ function HomePage() {
     onError: (error) => {
       if (error.message === "Invalid/expired token") {
         navigate({ to: "/login" });
+      } else if (
+        error.message ===
+        "Something went wrong trying to generate your transcript. Please try again."
+      ) {
+        setErrorMessage(error.message);
       }
     },
   });
@@ -85,6 +91,7 @@ function HomePage() {
   const stopRecording = () => {
     mediaRecorderRef.current.stop();
     setIsRecording(false);
+    setGeneratedTranscript("Getting your transcript...");
   };
 
   const restartRecording = () => {
@@ -107,10 +114,20 @@ function HomePage() {
       <Navbar />
       <main className="w-full m-auto flex flex-col justify-center items-center gap-8">
         {generatedTranscript != "" && (
-          <div id="generated-text-container">
+          <div
+            id="generated-text-container"
+            className="w-[450px] p-2 text-center"
+          >
             <h2 className="text-xl">You said: </h2>
             <h1 className="mx-auto text-3xl font-bold">
               {generatedTranscript}
+            </h1>
+          </div>
+        )}
+        {errorMessage != "" && (
+          <div id="error-text-container">
+            <h1 className="text-center mx-auto text-3xl font-bold p-2">
+              {errorMessage}
             </h1>
           </div>
         )}

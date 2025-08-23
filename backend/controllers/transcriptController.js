@@ -57,6 +57,11 @@ export const createTranscript = async (req, res) => {
 
   try {
     const data = await transcribeAudioHFInferenceAPI(req.file.buffer);
+
+    if (!data) {
+      return res.status(500).json({ error: "Failed to generate transcript" });
+    }
+
     const createTranscript = db.prepare(
       "INSERT INTO transcripts (audio_file, generated_text, user_id) VALUES (?, ?, ?)"
     );
