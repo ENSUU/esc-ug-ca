@@ -8,11 +8,11 @@
 * (Backend) Node.js + Express + better-sqlite3 + bcrypt + jsonwebtoken + dotenv + multer + cors
 
 ### Client:
-The client was built using React. The main pages the user will interact with are: 
+The client was built using React. The main pages of the web application are: 
 * Home Page - where the user will be able to record and see the generated transcript.
 * Login Page - where the user will log in
 * Sign Up Page - where the user will create an account
-* TransactionHistory Page - where the user can view/edit their previously generated transcripts
+* Transaction History Page - where the user can view/edit their previously generated transcripts
 
 #### User Authentication
 User authentication is handled using JSON web tokens. Requests made to the backend must have a valid JWT attached or the user will be redirected back to the Login page. On successful login, the generated JWT received from the backend is stored in a useContext hook. If the user refreshes the browser, this token will be reset, and the user will be redirected back to the Login page. 
