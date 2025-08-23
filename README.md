@@ -15,7 +15,7 @@ The client was built using React. The main pages of the web application are:
 * Transaction History Page - where the user can view/edit their previously generated transcripts
 
 #### User Authentication
-User authentication is handled using JSON web tokens. Requests made to the backend must have a valid JWT attached or the user will be redirected back to the Login page. On successful login, the generated JWT received from the backend is stored in a useContext hook. If the user refreshes the browser, this token will be reset, and the user will be redirected back to the Login page. 
+User authentication is handled using JSON Web Tokens (JWT). Requests made to the backend must have a valid JWT attached or the user will be redirected back to the Login page. On successful login, the generated JWT received from the backend is stored in a useContext hook. If the user refreshes the browser, this token will be reset, and the user will be redirected back to the Login page. 
 
 #### Routing
 Routing among the pages is handled using TanStack Router, with all pages except the Login and Sign Up page routes being protected. Therefore, attempting to visit a page with an invalid/expired token will redirect the user back to the Login page. 
