@@ -45,6 +45,14 @@ const LoginPage = () => {
     refetch();
   };
 
+  const getOpacity = () => {
+    if (isPending) {
+      return "opacity-75";
+    } else {
+      return "";
+    }
+  };
+
   return (
     <div className="h-dvh flex flex-col">
       <Navbar />

@@ -9,6 +9,8 @@ export const loginUser = async (usernameOrEmail, password) => {
   if (!res.ok) {
     if (res.status == 401) {
       throw new Error("Incorrect username/password");
+    } else if (res.status == 404) {
+      throw new Error("Account does not exist");
     } else if (res.status == 500) {
       throw new Error("Somthing went wrong. Please try again");
     }
