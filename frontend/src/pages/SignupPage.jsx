@@ -36,6 +36,10 @@ const SignupPage = () => {
       return;
     }
 
+    setTimeout(() => {
+      console.log("Timeout for 5 seconds");
+    }, 5000);
+
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");
     } else {
@@ -94,7 +98,7 @@ const SignupPage = () => {
           type="submit"
           form="signUpForm"
         >
-          Create Account
+          {mutation.isPending ? "Creating Account...." : "Create Account"}
         </button>
         <p>
           Already have an account? Log in{" "}

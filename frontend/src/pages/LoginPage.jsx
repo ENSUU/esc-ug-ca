@@ -1,39 +1,29 @@
 import Navbar from "../components/Navbar";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../api/auth";
-import { useState, useContext, useEffect } from "react";
+import { useState } from "react";
 import { useToken } from "../context/TokenContext";
 
 const LoginPage = () => {
   const [usernameOrEmail, setUsernameOrEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { token, login } = useToken();
+  const { login } = useToken();
 
-  const { data, isPending, isError, error, refetch } = useQuery({
-    queryKey: ["loginUser", usernameOrEmail, password],
-    queryFn: () => loginUser(usernameOrEmail, password),
-    retry: 0,
-    enabled: false,
+  const mutation = useMutation({
+    mutationFn: () => loginUser(usernameOrEmail, password),
+    onSuccess: (data) => {
+      const { token } = data;
+      login(token);
+      navigate({ to: "/" });
+    },
+    onError: (error) => {
+      setErrorMessage(error.message);
+    },
   });
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (token) {
-      navigate({ to: "/" });
-    }
-
-    if (!isPending) {
-      if (isError) {
-        setErrorMessage(error.message);
-      } else {
-        const { token } = data;
-        login(token);
-      }
-    }
-  }, [isPending, data, errorMessage, token]);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -42,15 +32,7 @@ const LoginPage = () => {
       loginForm.reportValidity();
       return;
     }
-    refetch();
-  };
-
-  const getOpacity = () => {
-    if (isPending) {
-      return "opacity-75";
-    } else {
-      return "";
-    }
+    mutation.mutate({ usernameOrEmail, password });
   };
 
   return (
@@ -88,7 +70,7 @@ const LoginPage = () => {
           type="submit"
           form="loginForm"
         >
-          Log In
+          {mutation.isPending ? "Logging in..." : "Log In"}
         </button>
         <p>
           Don't have an account? Create an account{" "}
